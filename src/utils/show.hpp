@@ -9,5 +9,5 @@ void showStack(Stack<T> &stack) {
 
 template<typename T>
 void showQueue(Queue<T> &queue) {
-    for (int index = queue.start; index <= queue.end; index++) cout << queue.array[index];
+    for (int index = 0; index <= queue.length; index++) cout << queue.array[index];
 }
