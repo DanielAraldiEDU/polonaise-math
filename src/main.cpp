@@ -7,9 +7,10 @@
 using namespace std;
 
 int main() {
-    Queue<char> queue;
+    Queue<char> queue, resultQueue;
 
     initializeQueue(queue);
+    initializeQueue(resultQueue);
 
     string expression;
     cout << "Enter a math expression: ";
