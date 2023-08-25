@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "structs.hpp"
-
 using namespace std;
 
 template<typename T> 
