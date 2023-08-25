@@ -13,5 +13,5 @@ struct Stack {
 template<typename T> 
 struct Queue {
     T array[LENGTH];
-    int start, end;
+    int start, end, length;
 };
