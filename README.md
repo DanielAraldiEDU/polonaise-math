@@ -12,7 +12,7 @@ A ordem de precedência dos operadores deve ser respeitada na seguinte ordem:
 | ----------- | --------- |
 | 1º          | `()`      |
 | 2º          | `ˆ`       |
-| 3º          | `x` e `/` |
+| 3º          | `*` e `/` |
 | 4º          | `+` e `-` |
 
 **Observação:** Não temos suporte ao raiz quadrada (`√`).
