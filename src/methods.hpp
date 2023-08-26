@@ -50,3 +50,13 @@ void insert(Queue<T> &queue, T value) {
     queue.array[queue.end] = value;
     queue.length++;
 }
+
+template<typename T>
+void getOperators(Queue<T> &queue, Stack<T> &stack) {
+    T value;
+    
+    while(remove(queue, value)) {
+        const bool isOperator = (value >= 40 && value <= 43) || value == 45 || value == 47 || value == 94;
+        if (isOperator) push(stack, value);
+    }
+}
