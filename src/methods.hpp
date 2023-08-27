@@ -64,6 +64,13 @@ int orderPrecedence(char operators){
     }
 }
 
+bool handlePrecedence(char currentOperator, char previousOperator){
+    int currentOperatorPrecedence = orderPrecedence(currentOperator);
+    int previousOperatorPrecedence = orderPrecedence(previousOperator);
+
+    return currentOperator >= previousOperator;
+}
+
 template<typename T>
 void getOperators(Queue<T> &queue, Stack<T> &stack) {
     T value;
