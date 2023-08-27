@@ -16,12 +16,13 @@ int main() {
   cout << "Enter a math expression: ";
   getline(cin, expression);
 
-  if (expression.length() > LENGTH || expression.length() == 0) {
+  const int expressionLength = expression.length();
+  if (expressionLength > LENGTH || !expressionLength) {
     cout << "You entered an invalid expression!";
     return 0;
   }
 
-  for (int index = 0; index < expression.length(); index++) {
+  for (int index = 0; index < expressionLength; index++) {
     if (expression[index] != ' ') insert(queue, expression[index]);
   }
 
