@@ -1,28 +1,28 @@
 #include <iostream>
 
-#include "methods.hpp"
 #include "structs.hpp"
-#include "./utils/show.hpp"
+#include "native.hpp"
+#include "./utils/methods.hpp"
 
 using namespace std;
 
 int main() {
-    Queue<char> queue, resultQueue;
+  Queue<char> queue, resultQueue;
 
-    initializeQueue(queue);
-    initializeQueue(resultQueue);
+  initialize(queue);
+  initialize(resultQueue);
 
-    string expression;
-    cout << "Enter a math expression: ";
-    getline(cin, expression);
+  string expression;
+  cout << "Enter a math expression: ";
+  getline(cin, expression);
 
-    if (expression.length() > LENGTH || expression.length() == 0) {
-        cout << "You entered an invalid expression!";
-        return 0;
-    }
-
-    for (int index = 0; index < expression.length(); index++) {
-        if (expression[index] != ' ') insert(queue, expression[index]);
-    }
+  if (expression.length() > LENGTH || expression.length() == 0) {
+    cout << "You entered an invalid expression!";
     return 0;
+  }
+
+  for (int index = 0; index < expression.length(); index++) {
+    if (expression[index] != ' ') insert(queue, expression[index]);
+  }
+  return 0;
 }
