@@ -51,6 +51,19 @@ void insert(Queue<T> &queue, T value) {
     queue.length++;
 }
 
+int orderPrecedence(char operators){
+    switch(operators){
+        case '^': return 3; break;
+        case '*': return 2; break;
+        case '/': return 2; break;
+        case '+': return 1; break;
+        case '-': return 1; break;
+        default:
+            return 0;
+            break;
+    }
+}
+
 template<typename T>
 void getOperators(Queue<T> &queue, Stack<T> &stack) {
     T value;
