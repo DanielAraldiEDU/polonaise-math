@@ -12,7 +12,7 @@ void show(Queue<T> &queue) {
   for (int index = 0; index <= queue.length; index++) cout << queue.array[index];
 }
 
-int getPrecedenceValue(char operatorValue){
+int getPrecedenceValue(char operatorValue) {
   switch(operatorValue){
     case '^': return 3;
     case '*': return 2;
@@ -23,7 +23,7 @@ int getPrecedenceValue(char operatorValue){
   }
 }
 
-bool handlePrecedence(char currentOperator, char previousOperator){
+bool handlePrecedence(char currentOperator, char previousOperator) {
   int currentOperatorPrecedence = getPrecedenceValue(currentOperator);
   int previousOperatorPrecedence = getPrecedenceValue(previousOperator);
 
