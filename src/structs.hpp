@@ -6,12 +6,12 @@ using namespace std;
 
 template<typename T> 
 struct Stack {
-    T array[LENGTH];
-    int topLevel;
+  T array[LENGTH];
+  int topLevel;
 };
 
 template<typename T> 
 struct Queue {
-    T array[LENGTH];
-    int start, end, length;
+  T array[LENGTH];
+  int start, end, length;
 };
