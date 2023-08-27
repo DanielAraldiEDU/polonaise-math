@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "structs.hpp"
-#include "native.hpp"
 #include "./utils/methods.hpp"
+#include "native.hpp"
 
 using namespace std;
 
@@ -24,5 +24,8 @@ int main() {
   for (int index = 0; index < expression.length(); index++) {
     if (expression[index] != ' ') insert(queue, expression[index]);
   }
+
+  resultQueue = transformPolonaiseNotation(queue);
+  show(resultQueue);
   return 0;
 }
