@@ -68,7 +68,7 @@ bool handlePrecedence(char currentOperator, char previousOperator){
     int currentOperatorPrecedence = orderPrecedence(currentOperator);
     int previousOperatorPrecedence = orderPrecedence(previousOperator);
 
-    return currentOperator >= previousOperator;
+    return currentOperatorPrecedence >= previousOperatorPrecedence;
 }
 
 template<typename T>
