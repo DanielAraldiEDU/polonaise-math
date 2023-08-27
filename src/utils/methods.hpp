@@ -31,11 +31,37 @@ bool handlePrecedence(char currentOperator, char previousOperator){
 }
 
 template<typename T>
-void getOperators(Queue<T> &queue, Stack<T> &stack) {
-  T value;
-    
+void insertOperatorsInQueue(Queue<T> &queue, Stack<T> &stack, T value) {
+  while (pop(stack, value)) {
+    const bool isParentheses = value == 40 || value == 41;
+    if (!isParentheses) insert(queue, value);
+  }
+}
+
+template<typename T>
+Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
+  Queue<T> resultQueue;
+  Stack<T> stack;
+  T value, previousValue = NULL;
+
+  initialize(stack);
+  initialize(resultQueue);
+
   while(remove(queue, value)) {
     const bool isOperator = (value >= 40 && value <= 43) || value == 45 || value == 47 || value == 94;
-      if (isOperator) push(stack, value);
+
+    if (isOperator) {
+      bool isCurrentValueBiggest = true;
+      if (previousValue != NULL) isCurrentValueBiggest = handlePrecedence(value, previousValue);
+      if (!isCurrentValueBiggest) insertOperatorsInQueue(resultQueue, stack, previousValue);
+      push(stack, value);
+      previousValue = value;
+    } else {
+      insert(resultQueue, value);
     }
+  }
+
+  if (!queue.length) insertOperatorsInQueue(resultQueue, stack, value);
+
+  return resultQueue;
 }
