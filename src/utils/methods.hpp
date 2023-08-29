@@ -3,13 +3,15 @@
 using namespace std;
 
 template<typename T>
-void show(Stack<T> &stack) {
-  for (int index = 0; index <= stack.topLevel; index++) cout << stack.array[index];    
+void show(Stack<T> stack) {
+  T value;
+  while (pop(stack, value)) cout << value;  
 }
 
 template<typename T>
-void show(Queue<T> &queue) {
-  for (int index = 0; index <= queue.length; index++) cout << queue.array[index];
+void show(Queue<T> queue) {
+  T value;
+  while (remove(queue, value)) cout << value;
 }
 
 int getPrecedenceValue(char operatorValue) {
