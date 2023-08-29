@@ -15,7 +15,7 @@ void show(Queue<T> queue) {
 }
 
 int getPrecedenceValue(char operatorValue) {
-  switch(operatorValue){
+  switch(operatorValue) {
     case '^': return 3;
     case '*': return 2;
     case '/': return 2;
@@ -29,6 +29,7 @@ bool handlePrecedence(char currentOperator, char previousOperator) {
   int currentOperatorPrecedence = getPrecedenceValue(currentOperator);
   int previousOperatorPrecedence = getPrecedenceValue(previousOperator);
 
+  if (currentOperator == 40) return true;
   return currentOperatorPrecedence >= previousOperatorPrecedence;
 }
 
