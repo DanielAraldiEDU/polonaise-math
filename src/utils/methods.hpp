@@ -83,9 +83,9 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
               isFoundOpenParentheses = value == 40;
               if (!isFoundOpenParentheses) {
                 insert(resultQueue, value);
-                isFoundValue = pop(stack, value);
-              } else {
                 isFoundValue = false;
+              } else {
+                isFoundValue = pop(stack, value);
               }
             }
           } else {
