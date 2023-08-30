@@ -67,8 +67,13 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
           if (!isCurrentValueBiggest) {
             while(pop(stack, previousValue) && !isCurrentValueBiggest) {
               isParentheses = previousValue == 40 || previousValue == 41;
-              if (!isParentheses) insert(resultQueue, previousValue);
               isCurrentValueBiggest = handlePrecedence(value, previousValue);
+              if (isParentheses) {
+                isCurrentValueBiggest = true;
+                push(stack, previousValue);
+              } else {
+                insert(resultQueue, previousValue);
+              }
             }
             if (value != 41) push(stack, value);
           } else if (isCloseParentheses) {
@@ -78,9 +83,9 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
               isFoundOpenParentheses = value == 40;
               if (!isFoundOpenParentheses) {
                 insert(resultQueue, value);
-                isFoundValue = false;
-              } else {
                 isFoundValue = pop(stack, value);
+              } else {
+                isFoundValue = false;
               }
             }
           } else {
