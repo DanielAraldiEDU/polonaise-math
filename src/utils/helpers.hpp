@@ -43,3 +43,17 @@ template<typename T>
 bool isParentheses(T value) {
   return isOpenParenthese(value) || isCloseParenthese(value);
 }
+
+double pow(double base, double exponent) {
+  const int length = exponent;
+  const double decimalValue = exponent - length;
+  const double auxiliarBase = base;
+  
+  for (int index = 0; index < length; index++) {
+    if (index != 0) base *= auxiliarBase;
+  };
+
+  if (decimalValue != 0) base *= (auxiliarBase * decimalValue);
+  
+  return base;
+}
