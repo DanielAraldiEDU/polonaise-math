@@ -35,13 +35,11 @@ void insertOperatorsInQueue(Queue<T> &queue, Stack<T> &stack, T value) {
 }
 
 template<typename T>
-Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
-  Queue<T> resultQueue;
+void transformPolonaiseNotation(Queue<T> &queue, Queue<T> &resultQueue) {
   Stack<T> stack;
   T queueValue, stackValue;
 
   initialize(stack);
-  initialize(resultQueue);
 
   while(remove(queue, queueValue)) {
     const bool isOperator = (queueValue >= 40 && queueValue <= 43) || queueValue == 45 || queueValue == 47 || queueValue == 94;
@@ -50,26 +48,23 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
 
     if (isOperator) {
       if (isCloseParentheses) {
-        // Test this logical
         bool hasNextStackValue = pop(stack, stackValue);
         if (hasNextStackValue) {
           while (hasNextStackValue) {
             bool isOpenParenthesesFromStackValue = stackValue == 40;
-            if (!isOpenParenthesesFromStackValue) {
-              insert(resultQueue, stackValue);
-            }
-
+            if (!isOpenParenthesesFromStackValue) insert(resultQueue, stackValue);
+            
             if (hasNextStackValue) {
               hasNextStackValue = pop(stack, stackValue);
               if (!hasNextStackValue) {
                 cout << "You entered an invalid expression!";
-                return NULL;
-              }
+                return;
+              } else if (hasNextStackValue && stackValue == 40) hasNextStackValue = false;
             }
           }
         } else {
           cout << "You entered an invalid expression!";
-          return NULL;
+          return;
         }
       } else {
         bool hasValue = pop(stack, stackValue);
@@ -77,7 +72,7 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
           int precedenceValue = getPrecedenceValue(stackValue);
           int precedenceQueueValue = getPrecedenceValue(queueValue);
   
-          if (precedenceQueueValue > precedenceValue) {
+          if (precedenceQueueValue > precedenceValue || isOpenParentheses) {
             push(stack, stackValue);
             push(stack, queueValue);
           } else {
@@ -116,6 +111,4 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
   }
 
   if (!queue.length) insertOperatorsInQueue(resultQueue, stack, queueValue);
-
-  return resultQueue;
 }
