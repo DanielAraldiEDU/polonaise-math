@@ -46,10 +46,31 @@ Queue<T> transformPolonaiseNotation(Queue<T> &queue) {
   while(remove(queue, queueValue)) {
     const bool isOperator = (queueValue >= 40 && queueValue <= 43) || queueValue == 45 || queueValue == 47 || queueValue == 94;
     const bool isCloseParentheses = queueValue == 41;
+    const bool isOpenParentheses = queueValue == 40;
 
     if (isOperator) {
       if (isCloseParentheses) {
-        
+        // Test this logical
+        bool hasNextStackValue = pop(stack, stackValue);
+        if (hasNextStackValue) {
+          while (hasNextStackValue) {
+            bool isOpenParenthesesFromStackValue = stackValue == 40;
+            if (!isOpenParenthesesFromStackValue) {
+              insert(resultQueue, stackValue);
+            }
+
+            if (hasNextStackValue) {
+              hasNextStackValue = pop(stack, stackValue);
+              if (!hasNextStackValue) {
+                cout << "You entered an invalid expression!";
+                return NULL;
+              }
+            }
+          }
+        } else {
+          cout << "You entered an invalid expression!";
+          return NULL;
+        }
       } else {
         bool hasValue = pop(stack, stackValue);
         if (hasValue) {
