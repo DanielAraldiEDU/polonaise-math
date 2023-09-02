@@ -91,3 +91,45 @@ void transformPolonaiseNotation(Queue<T> &queue, Queue<T> &resultQueue) {
     }
   }
 }
+
+double charToDouble(char number) {
+  if (isNumber(number)) return (double)number - 48;
+  else return 0;
+}
+
+template<typename T>
+double handleResultOperation(char operatorValue, T currentNumber, T previousNumber) {
+  switch(operatorValue) {
+    case '^': return pow(previousNumber, currentNumber);
+    case '*': return previousNumber * currentNumber;
+    case '/': return previousNumber / currentNumber;
+    case '+': return previousNumber + currentNumber;
+    case '-': return previousNumber - currentNumber;
+    default: return 0;
+  }
+}
+
+template<typename T>
+T calculatePolonaiseNotation(Queue<T> queue) {
+  T value;
+  Stack<double> stack;
+  double currentValue, previousValue, resultValue;
+
+  initialize(stack);
+
+  while(remove(queue, value)) {
+    if (isOperator(value)) {
+      pop(stack, currentValue);
+      pop(stack, previousValue);
+      resultValue = handleResultOperation(value, currentValue, previousValue);
+      push(stack, resultValue);
+    } else {
+      resultValue = charToDouble(value);
+      push(stack, resultValue);
+    }
+  }
+  
+  pop(stack, resultValue);
+
+  return resultValue;
+}
