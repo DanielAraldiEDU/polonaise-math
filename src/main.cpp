@@ -1,7 +1,9 @@
 #include <iostream>
 
 #include "structs.hpp"
-#include "./utils/methods.hpp"
+#include "./utils/helpers.hpp"
+#include "./validation/expression.hpp"
+#include "./resolvers/methods.hpp"
 #include "native.hpp"
 
 using namespace std;
@@ -16,18 +18,15 @@ int main() {
   cout << "Enter a math expression: ";
   getline(cin, expression);
 
-  const int expressionLength = expression.length();
-  if (expressionLength > LENGTH || !expressionLength) {
+  removeEmptySpaces(queue, expression);
+
+  const bool isValid = validateExpression(queue);
+  if (isValid) {
+    transformPolonaiseNotation(queue, resultQueue);
+    show(resultQueue);
+  } else {
     cout << "You entered an invalid expression!";
-    return 0;
   }
 
-  for (int index = 0; index < expressionLength; index++) {
-    if (expression[index] != ' ')
-      insert(queue, expression[index]);
-  }
-
-  transformPolonaiseNotation(queue, resultQueue);
-  show(resultQueue);
   return 0;
 }
