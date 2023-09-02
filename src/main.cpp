@@ -2,8 +2,8 @@
 
 #include "structs.hpp"
 #include "./utils/helpers.hpp"
-#include "./validation/expression.hpp"
 #include "./resolvers/methods.hpp"
+#include "./validation/expression.hpp"
 #include "native.hpp"
 
 using namespace std;
@@ -22,8 +22,15 @@ int main() {
 
   const bool isValid = validateExpression(queue);
   if (isValid) {
+    cout << "Expression in the Notation Hungarian: ";
+    show(queue);
+    cout << endl;
+
     transformPolonaiseNotation(queue, resultQueue);
+
+    cout << "Expression in the Polonaise Notation: ";
     show(resultQueue);
+    cout << endl;
   } else {
     cout << "You entered an invalid expression!";
   }
