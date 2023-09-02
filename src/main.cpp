@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 
 #include "structs.hpp"
 #include "native.hpp"
@@ -31,6 +32,8 @@ int main() {
     cout << "Expression in the Polonaise Notation: ";
     show(resultQueue);
     cout << endl;
+
+    toUpperNotation(resultQueue);
 
     const double resultExpression = calculatePolonaiseNotation(resultQueue);
 
