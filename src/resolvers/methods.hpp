@@ -133,3 +133,37 @@ T calculatePolonaiseNotation(Queue<T> queue) {
 
   return resultValue;
 }
+
+template<typename T>
+void toUpperNotation(Queue<T> &queue) {
+  Queue<T> auxiliarQueue;
+  T value;
+
+  initialize(auxiliarQueue);
+
+  while(remove(queue, value)) {
+    if (isLetter(value)) value = toupper(value);
+    insert(auxiliarQueue, value);
+  }
+
+  while(remove(auxiliarQueue, value)) insert(queue, value);
+}
+
+// TODO changeIncognitosToNumbers()
+//
+// template<typename T>
+// void changeIncognitosToNumbers(Queue<T> &queue) {
+//   Queue<T> auxiliarQueue;
+//   Stack<T> stack;
+//   T value;
+//   int couterLetters = 0;
+
+//   initialize(auxiliarQueue);
+
+//   while(remove(queue, value)) {
+//     if (isLetter(value)) push(stack, value);
+//     insert(auxiliarQueue, value);
+//   }
+
+//   while(remove(auxiliarQueue, value)) insert(queue, value);
+// }
