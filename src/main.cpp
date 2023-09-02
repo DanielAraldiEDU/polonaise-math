@@ -23,10 +23,11 @@ int main() {
   }
 
   for (int index = 0; index < expressionLength; index++) {
-    if (expression[index] != ' ') insert(queue, expression[index]);
+    if (expression[index] != ' ')
+      insert(queue, expression[index]);
   }
 
-  resultQueue = transformPolonaiseNotation(queue);
+  transformPolonaiseNotation(queue, resultQueue);
   show(resultQueue);
   return 0;
 }
