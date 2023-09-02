@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "structs.hpp"
+#include "native.hpp"
 #include "./utils/helpers.hpp"
 #include "./resolvers/methods.hpp"
 #include "./validation/expression.hpp"
-#include "native.hpp"
 
 using namespace std;
 
@@ -31,6 +31,11 @@ int main() {
     cout << "Expression in the Polonaise Notation: ";
     show(resultQueue);
     cout << endl;
+
+    const double resultExpression = calculatePolonaiseNotation(resultQueue);
+
+    cout << endl;
+    cout << "Expression Result: " << resultExpression << endl;
   } else {
     cout << "You entered an invalid expression!";
   }
