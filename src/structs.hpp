@@ -9,7 +9,8 @@ Estudades: Daniel Sansão Araldi e Rafael Mota Alves.
 
 using namespace std;
 
-#define LENGTH 1000 
+#define LENGTH 1000
+#define AMOUNT_LETTERS 26
 
 template<typename T> 
 struct Stack {
