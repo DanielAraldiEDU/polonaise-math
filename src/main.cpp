@@ -47,10 +47,12 @@ int main() {
     cout << endl;
 
     toUpperNotation(resultQueue);
-
-    const double resultExpression = calculatePolonaiseNotation(resultQueue);
-
-    cout << "\nExpression Result: " << resultExpression << endl;
+    
+    const bool wasChangedWithSuccess = changeIncognitosToNumbers(resultQueue);
+    if (wasChangedWithSuccess) {
+      const double resultExpression = calculatePolonaiseNotation(resultQueue);
+      cout << "\nExpression Result: " << resultExpression << endl;
+    }
   } else {
     cout << "You entered an invalid expression!";
   }
