@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cctype>
+#include <iostream>
 
 #include "structs.hpp"
 #include "native.hpp"
@@ -15,6 +15,12 @@ int main() {
   initialize(queue);
   initialize(resultQueue);
 
+  cout << "Introduction\n\n";
+  cout << "Constants represented by a single digit (0–9) and inside "
+          "parentheses!\n";
+  cout << "Incognitos represented by a single letter! (a–z or A-Z)\n";
+  cout << "Math operations: (+, -, *, / and ^)\n\n";
+
   string expression;
   cout << "Enter a math expression: ";
   getline(cin, expression);
@@ -23,7 +29,7 @@ int main() {
 
   const bool isValid = validateExpression(queue);
   if (isValid) {
-    cout << "Expression in the Notation Hungarian: ";
+    cout << "\nExpression in the Notation Hungarian: ";
     show(queue);
     cout << endl;
 
@@ -37,8 +43,7 @@ int main() {
 
     const double resultExpression = calculatePolonaiseNotation(resultQueue);
 
-    cout << endl;
-    cout << "Expression Result: " << resultExpression << endl;
+    cout << "\nExpression Result: " << resultExpression << endl;
   } else {
     cout << "You entered an invalid expression!";
   }
