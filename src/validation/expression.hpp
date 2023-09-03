@@ -1,3 +1,10 @@
+/*
+
+Trabalho M1.
+Estudades: Daniel Sansão Araldi e Rafael Mota Alves.
+
+*/
+
 #include <iostream>
 
 using namespace std;
