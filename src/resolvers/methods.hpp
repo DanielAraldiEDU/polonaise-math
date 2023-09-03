@@ -9,6 +9,8 @@ Estudades: Daniel Sansão Araldi e Rafael Mota Alves.
 
 using namespace std;
 
+// Transform to Polonaise Notation functions
+
 template<typename T>
 int getPrecedenceValue(T operatorValue) {
   switch(operatorValue) {
@@ -99,6 +101,8 @@ void transformPolonaiseNotation(Queue<T> &queue, Queue<T> &resultQueue) {
   }
 }
 
+// Calculate Polonaise Notation functions
+
 double charToDouble(char number) {
   if (isNumber(number)) return (double)number - 48;
   else return 0;
@@ -141,6 +145,8 @@ T calculatePolonaiseNotation(Queue<T> queue) {
   return resultValue;
 }
 
+// Transform to Upper Case all letters of the notation
+
 template<typename T>
 void toUpperNotation(Queue<T> &queue) {
   Queue<T> auxiliarQueue;
@@ -156,21 +162,51 @@ void toUpperNotation(Queue<T> &queue) {
   while(remove(auxiliarQueue, value)) insert(queue, value);
 }
 
-// TODO changeIncognitosToNumbers()
-//
-// template<typename T>
-// void changeIncognitosToNumbers(Queue<T> &queue) {
-//   Queue<T> auxiliarQueue;
-//   Stack<T> stack;
-//   T value;
-//   int couterLetters = 0;
+// Change Incognitos to Numbers
 
-//   initialize(auxiliarQueue);
+int getCharIndex(char value) {
+  if (isLetter(value)) return (int)value - 65;
+  else return 0;
+}
 
-//   while(remove(queue, value)) {
-//     if (isLetter(value)) push(stack, value);
-//     insert(auxiliarQueue, value);
-//   }
+template<typename T>
+bool changeIncognitosToNumbers(Queue<T> &queue) {
+  Queue<T> auxiliarQueue;
+  T value;
+  char letters[26];
 
-//   while(remove(auxiliarQueue, value)) insert(queue, value);
-// }
+  for (int index = 0; index < AMOUNT_LETTERS; index++) letters[index] = ' ';
+
+  initialize(auxiliarQueue);
+
+  while(remove(queue, value)) {
+    if (isLetter(value)) {
+      int charIndex = getCharIndex(value);
+      if (letters[charIndex] == ' ') letters[charIndex] = value;
+    }
+    insert(auxiliarQueue, value);
+  }
+
+  while(remove(auxiliarQueue, value)) insert(queue, value);
+
+  for (int index = 0; index < AMOUNT_LETTERS; index++) {
+    if (letters[index] != ' ') {
+      T auxiliarValue;
+      cout << "Value to the letter " << letters[index] << " (single digit (0–9)): ";
+      cin >> auxiliarValue;
+      
+      if (isNumber(auxiliarValue)) {
+        while(remove(queue, value)) {
+          if (isLetter(value) && value == letters[index]) value = auxiliarValue;
+          insert(auxiliarQueue, value);
+        }
+        while(remove(auxiliarQueue, value)) insert(queue, value);
+      } else {
+        cout << "You entered an invalid value!" << endl;
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
