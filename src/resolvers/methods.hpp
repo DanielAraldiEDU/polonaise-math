@@ -40,15 +40,9 @@ void transformPolonaiseNotation(Queue<T> &queue, Queue<T> &resultQueue) {
             
             if (hasNextStackValue) {
               hasNextStackValue = pop(stack, stackValue);
-              if (!hasNextStackValue) {
-                cout << "You entered an invalid expression!";
-                return;
-              } else if (hasNextStackValue && stackValue == 40) hasNextStackValue = false;
+              if (hasNextStackValue && stackValue == 40) hasNextStackValue = false;
             }
           }
-        } else {
-          cout << "You entered an invalid expression!";
-          return;
         }
       } else {
         bool hasValue = pop(stack, stackValue);
@@ -70,7 +64,7 @@ void transformPolonaiseNotation(Queue<T> &queue, Queue<T> &resultQueue) {
                 
                 if (precedenceQueueValue <= precedenceValue) {
                   insert(resultQueue, stackValue);
-                } else if (precedenceQueueValue > precedenceValue) {
+                } else {
                   push(stack, stackValue);
                   push(stack, queueValue);
                   hasNextStackValue = false;
