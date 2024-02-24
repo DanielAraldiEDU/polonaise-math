@@ -1,4 +1,4 @@
-# Polonaise Math 🇮🇩
+# Polonaise Math
 
 Converte equações escritas em notação húngara 🇭🇺 pelo usuário para notação polonesa 🇮🇩 de uma forma rápida e fácil. Obtém o resultado da equação resolvida caso o usuário queira.
 
